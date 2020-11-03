@@ -9,4 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Package importing
+
+```{r echo=FALSE}
+packages = c("tidyverse","rio")
+
+packages.check <- lapply(packages, FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+        install.packages(x, dependencies = TRUE)
+        library(x, character.only = TRUE)
+    }
+})
+```
+
+# File importing
+
+```{r}
+games <- rio::import("./data/games.csv")
+players <- rio::import("./data/players.csv")
+plays <- rio::import("./data/plays.csv")
+```
+
+# Exploratory Data Analysis
+
+```{r}
+str(games)
+str(players)
+str(plays)
+```
 
